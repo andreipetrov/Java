@@ -1,3 +1,5 @@
+package lect1.practice.sandbox;
+
 /**
  * Created by andre on 23.02.2016.
  */

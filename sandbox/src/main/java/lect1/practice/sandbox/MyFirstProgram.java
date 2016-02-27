@@ -1,8 +1,10 @@
+package lect1.practice.sandbox;
+
 public class MyFirstProgram {
 	
 	public static void main(String[] args){
 
-		Point p1 = new Point(5, 6);
+		Point p1 = new Point(4, 5);
 
 		Point p2 = new Point(7, 8);
 
