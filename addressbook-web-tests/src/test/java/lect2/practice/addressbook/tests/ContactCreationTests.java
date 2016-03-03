@@ -7,8 +7,8 @@ public class ContactCreationTests extends TestBase {
 
   @Test
   public void UserCreationTests() {
-    app.addNewContact();
-    app.fillContactFrom(new ContactData("Andrei", "I", "surname", "QA Analyst", "AT", "2435 New street, Chisinau, Moldova, MD-2028", "069583300", "andrei@test.com", "1988", "N/A", "N/A", "N/A"));
+    app.getNavigationHelper().addNewContact();
+    app.getCreationHelper().fillContactFrom(new ContactData("Andrei", "I", "surname", "QA Analyst", "AT", "2435 New street, Chisinau, Moldova, MD-2028", "069583300", "andrei@test.com", "1988", "N/A", "N/A", "N/A"));
   }
 
 }
