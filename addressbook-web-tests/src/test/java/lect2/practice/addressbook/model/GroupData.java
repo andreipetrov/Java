@@ -1,4 +1,4 @@
-package lect2.practice.addressbook;
+package lect2.practice.addressbook.model;
 
 public class GroupData {
   private final String name;
