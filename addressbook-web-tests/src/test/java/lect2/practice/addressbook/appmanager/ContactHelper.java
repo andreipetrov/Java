@@ -7,9 +7,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 /**
  * Created by andre on 02.03.2016.
  */
-public class CreationHelper extends HelperBase {
+public class ContactHelper extends HelperBase {
 
-  public CreationHelper(FirefoxDriver wd) {
+  public ContactHelper(FirefoxDriver wd) {
+
     super (wd);
   }
 
@@ -32,5 +33,17 @@ public class CreationHelper extends HelperBase {
   public void submitChanges() {
 
    click(By.xpath("//div[@id='content']/form/input[21]"));
+  }
+
+  public void selectContact() {
+    click(By.id("2"));
+  }
+
+  public void editContact() {
+    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[4]/td[8]/a/img"));
+  }
+
+  public void updateContact() {
+    click(By.xpath("//div[@id='content']/form[1]/input[22]"));
   }
 }

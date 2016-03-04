@@ -1,8 +1,5 @@
 package lect2.practice.addressbook.appmanager;
 
-import lect2.practice.addressbook.model.ContactData;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.concurrent.TimeUnit;
@@ -14,7 +11,7 @@ public class ApplicationManager {
 
   FirefoxDriver wd;
 
-  private CreationHelper creationHelper;
+  private ContactHelper contactHelper;
   private SessionHelper sessionHelper;
   private NavigationHelper navigationHelper;
   private GroupHelper groupHelper;
@@ -27,7 +24,7 @@ public class ApplicationManager {
     navigationHelper = new NavigationHelper(wd);
     sessionHelper = new SessionHelper(wd);
     sessionHelper.login("admin", "secret");
-    creationHelper = new CreationHelper(wd);
+    contactHelper = new ContactHelper(wd);
   }
 
     public void stop() {
@@ -42,7 +39,7 @@ public class ApplicationManager {
     return navigationHelper;
   }
 
-  public CreationHelper getCreationHelper() {
-    return creationHelper;
+  public ContactHelper getContactHelper() {
+    return contactHelper;
   }
 }
