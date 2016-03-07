@@ -1,13 +1,14 @@
 package lect2.practice.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
  * Created by andre on 02.03.2016.
  */
 public class SessionHelper extends HelperBase {
-  public SessionHelper(FirefoxDriver wd) {
+  public SessionHelper(WebDriver wd) {
     super(wd);
   }
 
