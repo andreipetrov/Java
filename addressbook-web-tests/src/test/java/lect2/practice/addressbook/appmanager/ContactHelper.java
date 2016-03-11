@@ -2,8 +2,11 @@ package lect2.practice.addressbook.appmanager;
 
 import lect2.practice.addressbook.model.ContactData;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 
 /**
  * Created by andre on 02.03.2016.
@@ -15,7 +18,7 @@ public class ContactHelper extends HelperBase {
     super (wd);
   }
 
-  public void fillContactFrom(ContactData contactData) {
+  public void fillContactFrom(ContactData contactData, boolean creation) {
     type(By.name("firstname"), contactData.getName());
     type(By.name("middlename"), contactData.getIbitial());
     type(By.name("lastname"), contactData.getSurname());
@@ -28,7 +31,12 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"), contactData.getSecondAddress());
     type(By.name("phone2"), contactData.getSecondPhone());
     type(By.name("notes"), contactData.getNotes());
-    submitChanges();
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    } else{
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+    }
   }
 
   public void submitChanges() {
