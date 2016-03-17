@@ -18,7 +18,9 @@ public class ContactHelper extends HelperBase {
     super (wd);
   }
 
-  public void fillContactFrom(ContactData contactData, boolean creation) {
+  public void fillContactFrom(ContactData contactData
+          //,boolean creation
+            ) {
     type(By.name("firstname"), contactData.getName());
     type(By.name("middlename"), contactData.getIbitial());
     type(By.name("lastname"), contactData.getSurname());
@@ -31,12 +33,13 @@ public class ContactHelper extends HelperBase {
     type(By.name("address2"), contactData.getSecondAddress());
     type(By.name("phone2"), contactData.getSecondPhone());
     type(By.name("notes"), contactData.getNotes());
+    submitChanges();
 
-    if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
-    } else{
-      Assert.assertFalse(isElementPresent(By.name("new_group")));
-    }
+    //if (creation) {
+      //new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(contactData.getGroup());
+    //} else{
+      //Assert.assertFalse(isElementPresent(By.name("new_group")));
+   // }
   }
 
   public void submitChanges() {
@@ -49,7 +52,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void editContact() {
-    click(By.xpath("//div/div[4]/form[2]/table/tbody/tr[4]/td[8]/a/img"));
+    click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
   }
 
   public void updateContact() {
@@ -61,7 +64,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData contact) {
-    fillContactFrom(contact, true);
+    fillContactFrom(contact);
   }
 
   public boolean isThereAContact() {

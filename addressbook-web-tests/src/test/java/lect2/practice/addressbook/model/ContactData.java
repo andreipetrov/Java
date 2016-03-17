@@ -2,7 +2,7 @@ package lect2.practice.addressbook.model;
 
 public class ContactData {
   private final String name;
-  private final String ibitial;
+  private final String initial;
   private final String surname;
   private final String position;
   private final String companyTitle;
@@ -15,12 +15,14 @@ public class ContactData {
   private final String notes;
   private String group;
 
-  public ContactData(String name, String ibitial, String surname,
+  public ContactData(String name, String initial, String surname,
                      String position, String companyTitle, String address,
                      String mobilePhone, String email, String age,
-                     String secondAddress, String secondPhone, String notes, String group) {
+                     String secondAddress, String secondPhone, String notes
+                     // String group
+                     ) {
     this.name = name;
-    this.ibitial = ibitial;
+    this.initial = initial;
     this.surname = surname;
     this.position = position;
     this.companyTitle = companyTitle;
@@ -31,7 +33,7 @@ public class ContactData {
     this.secondAddress = secondAddress;
     this.secondPhone = secondPhone;
     this.notes = notes;
-    this.group = group;
+    //this.group = group;
   }
 
   public String getName() {
@@ -39,7 +41,7 @@ public class ContactData {
   }
 
   public String getIbitial() {
-    return ibitial;
+    return initial;
   }
 
   public String getSurname() {
@@ -82,7 +84,5 @@ public class ContactData {
     return notes;
   }
 
-  public String getGroup() {
-    return group;
-  }
+  // public String getGroup() {   return group;  }
 }
