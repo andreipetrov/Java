@@ -61,7 +61,10 @@ public class ContactHelper extends HelperBase {
   }
 
   public void createContact(ContactData contact) {
-    getNavigationHelper().addNewContact();
-    fillContactFrom(new ContactData("Andrei", null, "Ivanov", "QA Analyst", null, null, null, null, null, null, null, null, "test0"), true);
+    fillContactFrom(contact, true);
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.name("selected[]"));
   }
 }

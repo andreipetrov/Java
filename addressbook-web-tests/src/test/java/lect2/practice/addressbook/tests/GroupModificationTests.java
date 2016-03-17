@@ -12,7 +12,7 @@ public class GroupModificationTests extends TestBase {
   public void testGroupModificationTest(){
     app.getNavigationHelper().gotoGroupPage();
     if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().CreateGroup(new GroupData("test0", null, null));
+      app.getGroupHelper().createGroup(new GroupData("test0", null, null));
     }
     app.getGroupHelper().selectGroup();
     app.getGroupHelper().modifyGroup();
