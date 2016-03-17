@@ -11,6 +11,9 @@ public class ContactEditTests extends TestBase {
   @Test
   public void testEditContact () {
     app.getContactHelper().selectContact();
+    if (app.getContactHelper().isThereAContact()){
+      app.getContactHelper().createContact(new ContactData("Andrei", null, "Ivanov", "QA Analyst", null, null, null, null, null, null, null, null, "test0"));
+    }
     app.getContactHelper().editContact();
     app.getContactHelper().fillContactFrom(new ContactData("Sergey", "I", "Ivanov", "QAt", "AT", "2435 New street, Chisinau, Moldova, MD-2028", "069583300", "andrei@test.com", "1988", "N/A", "N/A", "N/A", null), false);
     app.getContactHelper().updateContact();
