@@ -1,6 +1,7 @@
 package lect2.practice.addressbook.model;
 
 public class ContactData {
+  private final String id;
   private final String name;
   private final String initial;
   private final String surname;
@@ -20,7 +21,30 @@ public class ContactData {
                      String mobilePhone, String email, String age,
                      String secondAddress, String secondPhone, String notes
                      // String group
+  ) {
+    this.id = null;
+    this.name = name;
+    this.initial = initial;
+    this.surname = surname;
+    this.position = position;
+    this.companyTitle = companyTitle;
+    this.address = address;
+    this.mobilePhone = mobilePhone;
+    this.email = email;
+    this.age = age;
+    this.secondAddress = secondAddress;
+    this.secondPhone = secondPhone;
+    this.notes = notes;
+    //this.group = group;
+  }
+
+  public ContactData(String id, String name, String initial, String surname,
+                     String position, String companyTitle, String address,
+                     String mobilePhone, String email, String age,
+                     String secondAddress, String secondPhone, String notes
+                     // String group
                      ) {
+    this.id = id;
     this.name = name;
     this.initial = initial;
     this.surname = surname;
@@ -84,13 +108,18 @@ public class ContactData {
     return notes;
   }
 
+  public String getId() {
+    return id;
+  }
+
   // public String getGroup() {   return group;  }
 
 
   @Override
   public String toString() {
     return "ContactData{" +
-            "name='" + name + '\'' +
+            "id='" + id + '\'' +
+            ", name='" + name + '\'' +
             ", surname='" + surname + '\'' +
             '}';
   }
@@ -102,6 +131,7 @@ public class ContactData {
 
     ContactData that = (ContactData) o;
 
+    if (id != null ? !id.equals(that.id) : that.id != null) return false;
     if (name != null ? !name.equals(that.name) : that.name != null) return false;
     return surname != null ? surname.equals(that.surname) : that.surname == null;
 
@@ -109,7 +139,8 @@ public class ContactData {
 
   @Override
   public int hashCode() {
-    int result = name != null ? name.hashCode() : 0;
+    int result = id != null ? id.hashCode() : 0;
+    result = 31 * result + (name != null ? name.hashCode() : 0);
     result = 31 * result + (surname != null ? surname.hashCode() : 0);
     return result;
   }
