@@ -1,12 +1,17 @@
 package lect2.practice.addressbook.appmanager;
 
 import lect2.practice.addressbook.model.ContactData;
+import lect2.practice.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by andre on 02.03.2016.
@@ -47,8 +52,8 @@ public class ContactHelper extends HelperBase {
    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void selectContact() {
-    click(By.name("selected[]"));
+  public void selectContact(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void editContact() {
@@ -69,5 +74,24 @@ public class ContactHelper extends HelperBase {
 
   public boolean isThereAContact() {
     return isElementPresent(By.name("selected[]"));
+  }
+
+  public int getContactCount() {
+    return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for (WebElement element : elements){
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      WebElement cell0 = cells.get( 0 );
+      WebElement cell1 = cells.get( 1 );
+      String firstName = cell0.getText();
+      String lastName = cell1.getText();
+      ContactData contact = new ContactData(firstName, lastName, null, null, null, null, null, null, null, null, null, null);
+      contacts.add(contact);
+    }
+    return contacts;
   }
 }
