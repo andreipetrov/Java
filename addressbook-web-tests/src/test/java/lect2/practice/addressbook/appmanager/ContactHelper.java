@@ -64,6 +64,13 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
   }
 
+  public void modifyContact(int index, ContactData contact) {
+    selectContact(index);
+    editContact(index);
+    fillContactFrom(contact);
+    updateContact();
+  }
+
   public void deleteContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }

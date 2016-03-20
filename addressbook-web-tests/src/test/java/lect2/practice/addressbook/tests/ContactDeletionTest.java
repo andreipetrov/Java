@@ -2,6 +2,7 @@ package lect2.practice.addressbook.tests;
 
 import lect2.practice.addressbook.model.ContactData;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -10,14 +11,17 @@ import java.util.List;
  * Created by andre on 03.03.2016.
  */
 public class ContactDeletionTest extends TestBase {
-
-  @Test
-  public void testDeleteContact(){
+  @BeforeMethod
+  public void ensurePreconditions() {
     app.getNavigationHelper().goToHomePage();
-        if (!app.getContactHelper().isThereAContact()){
+    if (!app.getContactHelper().isThereAContact()){
       app.getNavigationHelper().addNewContact();
       app.getContactHelper().createContact(new ContactData("Andrei", null, "Ivanov", "QA Analyst", null, null, null, null, null, null, null, null));
     }
+  }
+
+  @Test
+  public void testDeleteContact(){
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size() - 1);
     app.getContactHelper().deleteContact();
