@@ -1,7 +1,6 @@
 package lect2.practice.addressbook.tests;
 
 import lect2.practice.addressbook.model.ContactData;
-import lect2.practice.addressbook.model.GroupData;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,21 +15,21 @@ import java.util.List;
 public class ContactEditTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
-    app.getNavigationHelper().goToHomePage();
-    if (!app.getContactHelper().isThereAContact()){
-      app.getNavigationHelper().addNewContact();
-      app.getContactHelper().createContact(new ContactData("Andrei", null, "Ivanov", "QA Analyst", null, null, null, null, null, null, null, null));
+    app.goTo().homePage();
+    if (app.contact().list().size() == 0){
+      app.goTo().addNewContact();
+      app.contact().create(new ContactData("Andrei", null, "Ivanov", "QA Analyst", null, null, null, null, null, null, null, null));
     }
   }
 
   @Test
   public void testEditContact () {
-    List<ContactData> before = app.getContactHelper().getContactList();
+    List<ContactData> before = app.contact().list();
     int index = before.size() - 1 ;
     ContactData contact = new ContactData(before.get(index).getId(), "Sergey", "I", "Ivanov", "QAt", "AT", "2435 New street, Chisinau, Moldova, MD-2028", "069583300", "andrei@test.com", "1988", "N/A", "N/A", "N/A");
-    app.getContactHelper().modifyContact(index, contact);
-    app.getNavigationHelper().returnToHomePage();
-    List<ContactData> after = app.getContactHelper().getContactList();
+    app.contact().modify(index, contact);
+    app.goTo().returnToHomePage();
+    List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size());
 
     before.remove(index);

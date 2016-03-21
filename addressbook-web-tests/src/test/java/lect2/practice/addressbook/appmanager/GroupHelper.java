@@ -4,7 +4,6 @@ import lect2.practice.addressbook.model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,7 +39,7 @@ public class GroupHelper extends HelperBase {
     wd.findElements(By.name("selected[]")).get(index).click();
   }
 
-  public void modifyGroup() {
+  public void modify() {
     click(By.name("edit"));
   }
 
@@ -52,18 +51,24 @@ public class GroupHelper extends HelperBase {
     click(By.name("delete"));
   }
 
-  public void createGroup(GroupData group) {
+  public void create(GroupData group) {
     initGroupCreation();
     fillGroupForm(group);
     submitGroupCreation();
     returnToGroupPage();
   }
 
-  public void modifyGroup(int index, GroupData group) {
+  public void modify(int index, GroupData group) {
     selectGroup(index);
-    modifyGroup();
+    modify();
     fillGroupForm(group);
     updateGroup();
+    returnToGroupPage();
+  }
+
+  public void delete(int index) {
+    selectGroup(index);
+    deleteGroup();
     returnToGroupPage();
   }
 
@@ -75,7 +80,7 @@ public class GroupHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<GroupData> getGroupList() {
+  public List<GroupData> list() {
     List<GroupData> groups = new ArrayList<GroupData>();
     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
     for (WebElement element : elements ){
