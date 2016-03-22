@@ -13,8 +13,8 @@ public class ContactCreationTests extends TestBase {
   public void UserCreationTests() {
     List<ContactData> before = app.contact().list();
     app.goTo().addNewContact();
-    ContactData contact = new ContactData("Nikolay", null, "Ivanov", "QA Analyst", null, null, null, null, null, null, null, null);
-    app.contact().fillContactFrom(contact);
+    ContactData contact = new ContactData().withName("Nikolay").withSurname("Ivanov").withPosition("QA Analyst");
+    app.contact().create(contact);
     List<ContactData> after = app.contact().list();
     Assert.assertEquals(after.size(), before.size() + 1);
 

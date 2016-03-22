@@ -18,7 +18,7 @@ public class ContactEditTests extends TestBase {
     app.goTo().homePage();
     if (app.contact().list().size() == 0){
       app.goTo().addNewContact();
-      app.contact().create(new ContactData("Andrei", null, "Ivanov", "QA Analyst", null, null, null, null, null, null, null, null));
+      app.contact().create(new ContactData().withName("Andrei").withSurname("Ivanov").withPosition("QA Analyst"));
     }
   }
 
@@ -26,7 +26,19 @@ public class ContactEditTests extends TestBase {
   public void testEditContact () {
     List<ContactData> before = app.contact().list();
     int index = before.size() - 1 ;
-    ContactData contact = new ContactData(before.get(index).getId(), "Sergey", "I", "Ivanov", "QAt", "AT", "2435 New street, Chisinau, Moldova, MD-2028", "069583300", "andrei@test.com", "1988", "N/A", "N/A", "N/A");
+    ContactData contact = new ContactData().
+            withId(before.get(index).getId()).
+            withName("Sergey").
+            withInitial("I").
+            withSurname("Ivanov").
+            withPosition("QAt").
+            withCompanyTitle("AT").
+            withAddress("2435 New street, Chisinau, Moldova, MD-2028").
+            withMobilePhone("069583300").withEmail("andrei@test.com").
+            withAge("25").
+            withSecondPhone("N/A").
+            withSecondAddress("N/A").
+            withNotes("N/A");
     app.contact().modify(index, contact);
     app.goTo().returnToHomePage();
     List<ContactData> after = app.contact().list();

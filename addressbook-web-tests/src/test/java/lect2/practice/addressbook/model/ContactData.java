@@ -1,64 +1,20 @@
 package lect2.practice.addressbook.model;
 
 public class ContactData {
-  private int id;
-  private final String name;
-  private final String initial;
-  private final String surname;
-  private final String position;
-  private final String companyTitle;
-  private final String address;
-  private final String mobilePhone;
-  private final String email;
-  private final String age;
-  private final String secondAddress;
-  private final String secondPhone;
-  private final String notes;
+  private int id = Integer.MAX_VALUE;
+  private String name;
+  private String initial;
+  private String surname;
+  private String position;
+  private String companyTitle;
+  private String address;
+  private String mobilePhone;
+  private String email;
+  private String age;
+  private String secondAddress;
+  private String secondPhone;
+  private String notes;
   private String group;
-
-  public ContactData(String name, String initial, String surname,
-                     String position, String companyTitle, String address,
-                     String mobilePhone, String email, String age,
-                     String secondAddress, String secondPhone, String notes
-                     // String group
-  ) {
-    this.id = Integer.MAX_VALUE;
-    this.name = name;
-    this.initial = initial;
-    this.surname = surname;
-    this.position = position;
-    this.companyTitle = companyTitle;
-    this.address = address;
-    this.mobilePhone = mobilePhone;
-    this.email = email;
-    this.age = age;
-    this.secondAddress = secondAddress;
-    this.secondPhone = secondPhone;
-    this.notes = notes;
-    //this.group = group;
-  }
-
-  public ContactData(int id, String name, String initial, String surname,
-                     String position, String companyTitle, String address,
-                     String mobilePhone, String email, String age,
-                     String secondAddress, String secondPhone, String notes
-                     // String group
-                     ) {
-    this.id = id;
-    this.name = name;
-    this.initial = initial;
-    this.surname = surname;
-    this.position = position;
-    this.companyTitle = companyTitle;
-    this.address = address;
-    this.mobilePhone = mobilePhone;
-    this.email = email;
-    this.age = age;
-    this.secondAddress = secondAddress;
-    this.secondPhone = secondPhone;
-    this.notes = notes;
-    //this.group = group;
-  }
 
   public String getName() {
     return name;
@@ -115,8 +71,74 @@ public class ContactData {
   // public String getGroup() {   return group;  }
 
 
-  public void setId(int id) {
+  public ContactData withName(String name) {
+    this.name = name;
+    return this;
+  }
+
+  public ContactData withInitial(String initial) {
+    this.initial = initial;
+    return this;
+  }
+
+  public ContactData withSurname(String surname) {
+    this.surname = surname;
+    return this;
+  }
+
+  public ContactData withPosition(String position) {
+    this.position = position;
+    return this;
+  }
+
+  public ContactData withCompanyTitle(String companyTitle) {
+    this.companyTitle = companyTitle;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withAge(String age) {
+    this.age = age;
+    return this;
+  }
+
+  public ContactData withSecondAddress(String secondAddress) {
+    this.secondAddress = secondAddress;
+    return this;
+  }
+
+  public ContactData withSecondPhone(String secondPhone) {
+    this.secondPhone = secondPhone;
+    return this;
+  }
+
+  public ContactData withNotes(String notes) {
+    this.notes = notes;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
+  }
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
   }
 
   @Override
