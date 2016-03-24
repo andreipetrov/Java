@@ -1,17 +1,13 @@
 package lect2.practice.addressbook.appmanager;
 
 import lect2.practice.addressbook.model.ContactData;
-import lect2.practice.addressbook.model.GroupData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by andre on 02.03.2016.
@@ -52,27 +48,28 @@ public class ContactHelper extends HelperBase {
    click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void selectContact(int index) {
-    wd.findElements(By.name("selected[]")).get(index).click();
+  public void selectContactById(int id) {
+
+    wd.findElement(By.cssSelector("input[id='" + id + "']")).click();
   }
 
-  public void editContact(int index) {
-    click(By.xpath("//table[@id='maintable']/tbody/tr[" + (2 + index) + "]/td[8]/a/img"));
+  public void editContactById(int id) {
+    wd.findElement(By.cssSelector("a[href='edit.php?id=" + id + "']")).click();
   }
 
   public void updateContact() {
     click(By.xpath("//div[@id='content']/form[1]/input[22]"));
   }
 
-  public void modify(int index, ContactData contact) {
-    selectContact(index);
-    editContact(index);
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
+    editContactById(contact.getId());
     fillContactFrom(contact);
     updateContact();
   }
 
-  public void delete(int index) {
-    selectContact(index);
+  public void delete(ContactData contact) {
+    selectContactById(contact.getId());
     deleteContact();
   }
 
@@ -92,8 +89,8 @@ public class ContactHelper extends HelperBase {
     return wd.findElements(By.name("selected[]")).size();
   }
 
-  public List<ContactData> list() {
-    List<ContactData> contacts = new ArrayList<ContactData>();
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
       List<WebElement> cells = element.findElements(By.tagName("td"));
