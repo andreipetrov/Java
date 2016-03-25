@@ -1,11 +1,18 @@
 package lect2.practice.addressbook.tests;
 
 import lect2.practice.addressbook.model.ContactData;
+import lect2.practice.addressbook.model.Contacts;
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.testng.Assert.assertEquals;
 
 /**
  * Created by andre on 03.03.2016.
@@ -22,7 +29,7 @@ public class ContactEditTests extends TestBase {
 
   @Test
   public void testEditContact () {
-    Set<ContactData> before = app.contact().all();
+    Contacts before = app.contact().all();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().
             withId(modifiedContact.getId()).
@@ -39,11 +46,8 @@ public class ContactEditTests extends TestBase {
             withNotes("N/A");
     app.contact().modify(contact);
     app.goTo().returnToHomePage();
-    Set<ContactData> after = app.contact().all();
-    Assert.assertEquals(after.size(), before.size());
-
-    before.remove(modifiedContact);
-    before.add(contact);
-    Assert.assertEquals(before, after);
+    Contacts after = app.contact().all();
+    assertEquals(after.size(), before.size());
+    assertThat(after, equalTo(before.without(modifiedContact).withAdded(contact)));
   }
 }
