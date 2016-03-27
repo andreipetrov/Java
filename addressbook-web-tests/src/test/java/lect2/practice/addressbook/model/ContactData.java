@@ -19,6 +19,8 @@ public class ContactData {
   private String secondPhone;
   private String notes;
   private String group;
+  private String allPhones;
+  private String allEmails;
 
   public String getName() {
     return name;
@@ -182,6 +184,24 @@ public class ContactData {
 
   public ContactData withWorkPhone(String workPhone) {
     this.workPhone = workPhone;
+    return this;
+  }
+
+  public String getAllPhones() {
+    return allPhones;
+  }
+
+  public ContactData withAllPhones(String allPhones) {
+    this.allPhones = allPhones;
+    return this;
+  }
+
+  public String getAllEmails() {
+    return allEmails;
+  }
+
+  public ContactData withAllEmails(String allEmails) {
+    this.allEmails = allEmails;
     return this;
   }
 
