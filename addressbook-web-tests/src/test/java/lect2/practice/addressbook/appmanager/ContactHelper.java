@@ -106,17 +106,29 @@ public class ContactHelper extends HelperBase {
     List<WebElement> elements = wd.findElements(By.name("entry"));
     for (WebElement element : elements){
       List<WebElement> cells = element.findElements(By.tagName("td"));
-      WebElement cell1 = cells.get( 1 );
-      WebElement cell2 = cells.get( 2 );
-      String firstName = cell2.getText();
-      String lastName = cell1.getText();
+      //WebElement cell1 = cells.get( 1 );
+      //WebElement cell2 = cells.get( 2 );
+      //WebElement cell3 = cells.get( 3 );
+      //String firstName = cell2.getText();
+      //String lastName = cell1.getText();
+      //String address = cell3.getText();
+
+
+     String firstName = cells.get(2).getText();
+     String lastName = cells.get(1).getText();
+     String address = cells.get(3).getText();
+     //String[] emails = cells.get(4).getText().split("\n");
+     String[] phones = cells.get(5).getText().split("\n");
+
       int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("id"));
-      contactCache.add(new ContactData().withId(id).withName(firstName).withSurname(lastName));
+      contactCache.add(new ContactData().withId(id).withName(firstName).withSurname(lastName).withAddress(address)
+             //.withEmail(emails[0]).withEmail2(emails[1]).withEmail3(emails[2])
+             .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]));
     }
     return new Contacts(contactCache);
   }
 
-  public ContactData infoFromEditForm(ContactData contact) {
+  public ContactData contactInfoFromEditForm(ContactData contact) {
     initContactModificationById(contact.getId());
     String firstName = wd.findElement(By.name("firstname")).getAttribute("value");
     String lastName = wd.findElement(By.name("lastname")).getAttribute("value");
