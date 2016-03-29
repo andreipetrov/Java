@@ -21,6 +21,7 @@ public class ContactData {
   private String group;
   private String allPhones;
   private String allEmails;
+  private String allData;
 
   public String getName() {
     return name;
@@ -202,6 +203,15 @@ public class ContactData {
 
   public ContactData withAllEmails(String allEmails) {
     this.allEmails = allEmails;
+    return this;
+  }
+
+  public String getAllData() {
+    return allData;
+  }
+
+  public ContactData withAllData(String allData) {
+    this.allData = allData;
     return this;
   }
 

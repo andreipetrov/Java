@@ -45,7 +45,7 @@ public class ContactDataTests extends TestBase {
             .stream().filter((e) -> ! e.equals(""))
             .map(ContactDataTests::cleanedEmails)
             .collect(Collectors.joining("\n"));
-  }
+}
 
   private String mergePhones(ContactData contact) {
     return Arrays.asList(contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone())
@@ -61,5 +61,4 @@ public class ContactDataTests extends TestBase {
   public static String cleanedPhones(String phone){
     return phone.replaceAll("\\n", "").replaceAll("[-()]", "");
   }
-
 }
