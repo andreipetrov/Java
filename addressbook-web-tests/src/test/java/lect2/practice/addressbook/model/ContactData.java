@@ -1,5 +1,7 @@
 package lect2.practice.addressbook.model;
 
+import java.io.File;
+
 public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String name;
@@ -22,6 +24,7 @@ public class ContactData {
   private String allPhones;
   private String allEmails;
   private String allData;
+  private File photo;
 
   public String getName() {
     return name;
@@ -96,6 +99,15 @@ public class ContactData {
   }
 
   // public String getGroup() {   return group;  }
+
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
 
 
   public ContactData withName(String name) {
