@@ -21,6 +21,7 @@ public class ApplicationManager {
   private String browser;
 
   public ApplicationManager(String browser) {
+    System.out.println(browser);
     this.browser = browser;
   }
 

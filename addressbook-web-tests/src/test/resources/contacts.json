@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Sergey 0",
+    "surname": "Ivanov 0",
+    "address": "Lenin str., 25, ap.13, Omsk, Russian Federation 0",
+    "email": "sergey.ivanov@test.com"
+  },
+  {
+    "name": "Sergey 1",
+    "surname": "Ivanov 1",
+    "address": "Lenin str., 25, ap.13, Omsk, Russian Federation 1",
+    "email": "sergey.ivanov@test.com"
+  },
+  {
+    "name": "Sergey 2",
+    "surname": "Ivanov 2",
+    "address": "Lenin str., 25, ap.13, Omsk, Russian Federation 2",
+    "email": "sergey.ivanov@test.com"
+  }
+]

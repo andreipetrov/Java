@@ -1,0 +1,20 @@
+<list>
+  <contact>
+    <name>Sergey 0</name>
+    <surname>Ivanov 0</surname>
+    <address>Lenin str., 25, ap.13, Omsk, Russian Federation 0</address>
+    <email>sergey.ivanov@test.com</email>
+  </contact>
+  <contact>
+    <name>Sergey 1</name>
+    <surname>Ivanov 1</surname>
+    <address>Lenin str., 25, ap.13, Omsk, Russian Federation 1</address>
+    <email>sergey.ivanov@test.com</email>
+  </contact>
+  <contact>
+    <name>Sergey 2</name>
+    <surname>Ivanov 2</surname>
+    <address>Lenin str., 25, ap.13, Omsk, Russian Federation 2</address>
+    <email>sergey.ivanov@test.com</email>
+  </contact>
+</list>

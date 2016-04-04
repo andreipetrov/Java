@@ -6,6 +6,7 @@ import com.beust.jcommander.ParameterException;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thoughtworks.xstream.XStream;
+import lect2.practice.addressbook.model.ContactData;
 import lect2.practice.addressbook.model.GroupData;
 
 import java.io.File;
@@ -16,11 +17,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by andre on 29.03.2016.
+ * Created by andre on 03.04.2016.
  */
-public class GroupDataGenerator {
+public class ContactDataGenerator {
 
-  @Parameter(names = "-c", description = "Group count")
+  @Parameter(names = "-c", description = "Contact count")
   public int count;
 
   @Parameter(names = "-f", description = "Target file")
@@ -30,7 +31,7 @@ public class GroupDataGenerator {
   public String format;
 
   public static void main(String[] args) throws IOException {
-    GroupDataGenerator generator = new GroupDataGenerator();
+    ContactDataGenerator generator = new ContactDataGenerator();
     JCommander jCommander = new JCommander(generator);
     try{
       jCommander.parse(args);
@@ -42,53 +43,55 @@ public class GroupDataGenerator {
   }
 
   private void run() throws IOException {
-    List<GroupData> groups = generateGroups(count);
+    List<ContactData> contacts = generateContacts(count);
     if (format.equals("csv")){
-      saveAsCsv(groups, new File(file));
+      saveAsCsv(contacts, new File(file));
     } else if (format.equals("xml")){
-      saveAsXml(groups, new File(file));
+      saveAsXml(contacts, new File(file));
     } else if (format.equals("json")){
-      saveAsJson(groups, new File(file));
+      saveAsJson(contacts, new File(file));
     } else {
       throw new IOException("Invalid format " + format);
     }
   }
 
-  private void saveAsJson(List<GroupData> groups, File file) throws IOException {
+  private void saveAsJson(List<ContactData> contacts, File file) throws IOException {
     Gson gson = new GsonBuilder().setPrettyPrinting().excludeFieldsWithoutExposeAnnotation().create();
-    String json = gson.toJson(groups);
+    String json = gson.toJson(contacts);
     Writer writer = new FileWriter(file);
     writer.write(json);
     writer.close();
   }
 
-  private void saveAsXml(List<GroupData> groups, File file) throws IOException {
+  private void saveAsXml(List<ContactData> contacts, File file) throws IOException {
     System.out.println(file.getAbsoluteFile());
     XStream xstream = new XStream();
-    xstream.processAnnotations(GroupData.class);
-    String xml = xstream.toXML(groups);
+    xstream.processAnnotations(ContactData.class);
+    String xml = xstream.toXML(contacts);
     Writer writer = new FileWriter(file);
     writer.write(xml);
     writer.close();
   }
 
   private void
-      saveAsCsv(List<GroupData> groups, File file) throws IOException {
+  saveAsCsv(List<ContactData> contacts, File file) throws IOException {
     System.out.println(file.getAbsoluteFile());
     Writer writer = new FileWriter(file);
-    for (GroupData group : groups){
-      writer.write(String.format("%s;%s;%s\n", group.getName(), group.getHeader(), group.getFooter()));
+    for (ContactData contact : contacts){
+      writer.write(String.format("%s;%s;%s\n", contact.getName(), contact.getSurname(),
+              contact.getAddress(), contact.getEmail()));
     }
     writer.close();
   }
 
-  private static List<GroupData> generateGroups(int count) {
-    List<GroupData> groups = new ArrayList<GroupData>();
+  private static List<ContactData> generateContacts(int count) {
+    List<ContactData> contacts = new ArrayList<ContactData>();
     for (int i = 0; i < count; i++){
-      groups.add(new GroupData().withName(String.format("test %s", i)).
-      withHeader(String.format("header %s", i)).
-      withFooter(String.format("footer %s", i)));
+      contacts.add(new ContactData().withName(String.format("Sergey %s", i)).
+              withSurname(String.format("Ivanov %s", i)).
+              withAddress(String.format("Lenin str., 25, ap.13, Omsk, Russian Federation %s", i)).
+              withEmail("sergey.ivanov@test.com"));
     }
-    return groups;
+    return contacts;
   }
 }

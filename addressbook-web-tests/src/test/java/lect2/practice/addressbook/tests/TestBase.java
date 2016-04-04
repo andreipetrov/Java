@@ -8,7 +8,7 @@ import org.testng.annotations.BeforeSuite;
 /**
  * Created by andre on 02.03.2016.
  */
-public class TestBase {
+public abstract class TestBase {
 
   protected static final ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
 
