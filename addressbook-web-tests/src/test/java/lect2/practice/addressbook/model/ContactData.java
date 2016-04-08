@@ -3,37 +3,72 @@ package lect2.practice.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 @XStreamAlias("contact")
+@Entity
+@Table(name = "addressbook")
 public class ContactData {
   @XStreamOmitField
+  @Id
+  @Column(name = "id")
   private int id = Integer.MAX_VALUE;
   @Expose
+  @Column(name = "firstname")
   private String name;
+  @Column(name = "middlename")
   private String initial;
   @Expose
+  @Column(name = "lastname")
   private String surname;
+  @Column(name = "title")
   private String position;
+  @Column(name = "company")
   private String companyTitle;
   @Expose
+  @Column(name = "address")
+  @Type(type = "text")
   private String address;
   @Expose
+  @Column(name = "email")
+  @Type(type = "text")
   private String email;
+  @Column(name = "email2")
+  @Type(type = "text")
   private String email2;
+  @Column(name = "email3")
+  @Type(type = "text")
   private String email3;
+  @Column(name = "home")
+  @Type(type = "text")
   private String homePhone;
+  @Column(name = "mobile")
+  @Type(type = "text")
   private String mobilePhone;
+  @Column(name = "work")
+  @Type(type = "text")
   private String workPhone;
+  @Transient
   private String age;
+  @Transient
   private String secondAddress;
+  @Transient
   private String secondPhone;
+  @Transient
   private String notes;
+  @Transient
   private String group;
+  @Transient
   private String allPhones;
+  @Transient
   private String allEmails;
+  @Transient
   private String allData;
-  private File photo;
+  @Column(name = "photo")
+  @Type(type = "text")
+  private String photo;
 
   public String getName() {
     return name;
@@ -110,11 +145,11 @@ public class ContactData {
   // public String getGroup() {   return group;  }
 
   public File getPhoto() {
-    return photo;
+    return new File (photo);
   }
 
   public ContactData withPhoto(File photo) {
-    this.photo = photo;
+    this.photo = photo.getPath();
     return this;
   }
 
