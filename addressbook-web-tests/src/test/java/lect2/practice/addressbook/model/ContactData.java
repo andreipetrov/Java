@@ -145,7 +145,10 @@ public class ContactData {
   // public String getGroup() {   return group;  }
 
   public File getPhoto() {
-    return new File (photo);
+    if (photo != null) {
+      return new File(photo);
+    }
+    return null;
   }
 
   public ContactData withPhoto(File photo) {
@@ -254,7 +257,10 @@ public class ContactData {
   }
 
   public String getAllEmails() {
-    return allEmails;
+    if (allEmails != null) {
+      return new String(allEmails);
+    }
+    return null;
   }
 
   public ContactData withAllEmails(String allEmails) {

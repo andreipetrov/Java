@@ -21,7 +21,7 @@ public class ContactDataTests extends TestBase {
   @BeforeMethod
   public void ensurePreconditions() {
     app.goTo().homePage();
-    if (app.contact().all().size() == 0) {
+    if (app.db().contacts().size() == 0) {
       app.goTo().addNewContact();
       app.contact().create(new ContactData().withName("Andrei").withSurname("Ivanov").withPosition("QA Analyst").
               withAddress("Moscow").withEmail("Ivanov@test.com").withEmail2("A.Ivanov@test.com").withEmail3("N/A")
@@ -32,7 +32,7 @@ public class ContactDataTests extends TestBase {
   @Test
   public void testContactData() {
     app.goTo().homePage();
-    ContactData contact = app.contact().all().iterator().next();
+    ContactData contact = app.db().contacts().iterator().next();
     ContactData contactInfoFromEditForm = app.contact().contactInfoFromEditForm(contact);
 
     assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
@@ -41,7 +41,7 @@ public class ContactDataTests extends TestBase {
   }
 
   private String mergeEmails(ContactData contact) {
-    return Arrays.asList(contact.getEmail(), contact.getEmail2(),contact.getEmail3())
+    return Arrays.asList(contact.getEmail(),contact.getEmail2(),contact.getEmail3())
             .stream().filter((e) -> ! e.equals(""))
             .map(ContactDataTests::cleanedEmails)
             .collect(Collectors.joining("\n"));
