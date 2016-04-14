@@ -6,6 +6,7 @@ import com.thoughtworks.xstream.XStream;
 import lect2.practice.addressbook.model.ContactData;
 import lect2.practice.addressbook.model.Contacts;
 import lect2.practice.addressbook.model.GroupData;
+import lect2.practice.addressbook.model.Groups;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
@@ -57,9 +58,10 @@ public class ContactCreationTests extends TestBase {
 
   @Test(dataProvider = "validContactsFromJson")
   public void userCreationTests(ContactData contact) {
+    Groups groups = app.db().groups();
     Contacts before = app.db().contacts();
     app.goTo().addNewContact();
-    app.contact().create(contact);
+    //app.contact().create(contact).(groups.iterator().next());
     Contacts after = app.db().contacts();
     assertThat(app.contact().count(), equalTo(before.size() + 1));
     assertThat(after, equalTo(
