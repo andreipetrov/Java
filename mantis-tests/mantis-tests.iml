@@ -40,6 +40,6 @@
     <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.2" level="project" />
     <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.9" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.3.1" level="project" />
-    <orderEntry type="module" module-name="addressbook-web-tests" scope="TEST" />
+    <orderEntry type="library" name="Gradle: commons-net:commons-net:3.4" level="project" />
   </component>
 </module>
